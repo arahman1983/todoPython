@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Item
+{% endblock %}
+
+{% block main %}
+    <h3 class="my-3">  Add Item </h3>
+    <form action="/add" method="post" id="addForm">
+        <div class="form-group">
+            <input autofocus class="form-control" id="item" name="item" placeholder="Item description" type="text">
+            <div class="alert alert-danger my-3 d-none" id="itemError" role="alert">
+              <small>Item description is required!</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <select class="form-control" id="catSelect" name="catSelect">
+                <option value="" disabled selected>Select Category</option>
+                {%for i in range(0, len)%}
+                    <option value={{cats[i].id}} >{{cats[i].title}}</option>
+                {%endfor%}
+            </select>
+             <div class="alert alert-danger my-3 d-none" id="catSelectError" role="alert">
+              <small>category is required!</small>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Add Item</button>
+    </form>
+
+    <script>
+        let addForm = document.querySelector("#addForm");
+        let item = document.querySelector("#item");
+        let catSelect = document.querySelector("#catSelect");
+
+        addForm.onsubmit = function(event){
+            if(item.value.length === 0)
+            {
+                document.querySelector("#itemError").classList.remove("d-none");
+                 return false;
+            }else{
+                document.querySelector("#itemError").classList.add("d-none");
+            }
+
+            if(!catSelect.value)
+            {
+                document.querySelector("#catSelectError").classList.remove("d-none");
+                 return false;
+            }else{
+                document.querySelector("#catSelectError").classList.add("d-none");
+            }
+        }
+    </script>
+{% endblock %}

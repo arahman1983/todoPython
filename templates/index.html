@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+    <div class="d-flex justify-content-between">
+      <h3 class="my-3 p-0">Dashboard</h3>
+      <a href="/add" class="btn btn-primary mt-3" style="height:40px">Add Item</a>
+    </div>
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Item</th>
+      <th scope="col">Category</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+
+    </tr>
+  </thead>
+  <tbody>
+      {%for i in range(0, len)%}
+        <tr>
+          <td>{{items[i].description}}</td>
+          <td>{{items[i].title}}</td>
+          <td>
+            {% if items[i].isComplete == 'true' %}
+              <small class="text-success"> Completed </small>
+            {% else %}
+              <a class="btn btn-warning" href="/edit/{{items[i].t_id}}">
+                <small> Not Completed </small>
+              </a>
+            {%endif%}
+            </td>
+          <td>
+            <a href="/deleteitem/{{items[i].t_id}}" class="btn btn-danger">Delete</a>
+          </td>
+
+        </tr>
+    {%endfor%}
+  </tbody>
+</table>
+{% endblock %}

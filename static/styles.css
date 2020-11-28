@@ -1,0 +1,53 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
+}
+
+
+.navbar-dark .navbar-nav .nav-link {
+    color:#FFF;
+}
+
+
+main {
+    min-height: 86vh;
+}
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main #addForm .form-control
+{
+    width:400px;
+}
+
+main form .alert
+{
+    /* center form controls */
+    /*display: inline-block;*/
+
+    /* override Bootstrap's 100% width for form controls */
+    width: 300px;
+    margin: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}

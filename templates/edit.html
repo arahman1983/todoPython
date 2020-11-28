@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Item
+{% endblock %}
+
+{% block main %}
+    <form action="/edit/{{item.t_id}}" method="post" id="addForm">
+        <div class="form-group">
+            <h4>{{item.description}}</h4>
+        </div>
+        <div class="form-group">
+            <h4>{{item.title}}</h4>
+        </div>
+
+        <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" name="isCompleted" value={{item.isComplete}}
+              {%if item.isComplete == true%}
+                checked
+              {%endif%}
+              id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">
+                  <span>is complete</span>
+              </label>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="/" class="btn btn-secondary mx-3">Cancel</a>
+            <button class="btn btn-primary mx-3" id="submitBtn" type="submit" disabled>Submit</button>
+        </div>
+    </form>
+
+    <script>
+        submitBtn = document.querySelector("#submitBtn");
+        checkBox = document.querySelector("#customCheck1");
+        checkBox.onclick = function(event){
+            let isCompleted = event.target.checked;
+            event.target.value = isCompleted;
+            submitBtn.disabled = !isCompleted;
+        };
+    </script>
+{% endblock %}

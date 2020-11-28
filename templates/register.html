@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post" id="registerForm">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" id="username" placeholder="Username" type="text">
+            <div class="alert alert-danger my-3 d-none" id="usernameError" role="alert">
+              <small>Username is required!</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" id="password" placeholder="Password" type="password">
+            <div class="alert alert-danger my-3 d-none" id="passwordError" role="alert">
+              <small>Password must be at least 8 characters!</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="cpassword" id="cpassword" placeholder="Confirm Password" type="password">
+            <div class="alert alert-danger my-3 d-none" id="cpasswordError" role="alert">
+              <small>Password and confirm must be the same!</small>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
+    <script>
+        let regForm = document.querySelector("#registerForm");
+        let username = document.querySelector("#username");
+        let password = document.querySelector("#password");
+        let cpassword = document.querySelector("#cpassword");
+
+        regForm.onsubmit = function(event){
+            if(username.value.length === 0){
+                document.querySelector("#usernameError").classList.remove("d-none");
+                return false;
+            }else{
+                document.querySelector("#usernameError").classList.add("d-none");
+            }
+
+            if(password.value.length < 8){
+                document.querySelector("#passwordError").classList.remove("d-none");
+                return false;
+            }else{
+                document.querySelector("#passwordError").classList.add("d-none");
+            }
+
+            if(password.value !== cpassword.value){
+                document.querySelector("#cpasswordError").classList.remove("d-none");
+                return false;
+            }else{
+                document.querySelector("#cpasswordError").classList.add("d-none");
+            }
+
+
+        };
+    </script>
+{% endblock %}
